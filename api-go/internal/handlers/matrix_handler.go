@@ -38,6 +38,7 @@ func (h *MatrixHandler) HandleQR(c *fiber.Ctx) error {
 		b, _ := json.Marshal(body)
 
 		resp, err := http.Post(nodeURL, "application/json", bytes.NewReader(b))
+
 		if err != nil {
 			log.Println("Error forwarding to Node API:", err)
 		} else {
