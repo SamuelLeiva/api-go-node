@@ -1,6 +1,4 @@
-Readme.md
-
-# Go and Node build files
+# Go build files
 bin/
 build/
 dist/
@@ -9,26 +7,17 @@ dist/
 pkg/
 vendor/
 
-# Node dependencies
-node_modules/
-
 # Temp files
 *.log
 *.out
 
 # Tests
 coverage/
-tests/
 *_test.go
-*.test.ts
-jest.config.ts
-
-# Env files
-.env
 
 # Git
-.gitignore
 .git
+.gitignore
 
 # IDE / OS files
 .vscode/
@@ -39,7 +28,3 @@ Thumbs.db
 
 # Docker
 Dockerfile
-docker-compose*
-
-# Specific file
-gen.js

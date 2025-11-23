@@ -1,0 +1,35 @@
+# Node build output
+dist/
+build/
+
+# Dependencies (should be installed inside container)
+node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# Tests
+coverage/
+*.test.ts
+tests/
+jest.config.ts
+
+# Git
+.git
+.gitignore
+
+# Env files (NEVER include these)
+.env
+.env*.local
+
+# OS / Editor files
+.vscode/
+.idea/
+*.DS_Store
+Thumbs.db
+
+# Docker
+Dockerfile

@@ -10,9 +10,8 @@ import (
 )
 
 func AuthRequired(c *fiber.Ctx) error {
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("Error al cargar el archivo .env")
+	if err := godotenv.Load(); err != nil {
+		log.Println("⚠ No .env file found, continuing with Docker environment variables")
 	}
 
 	secret := os.Getenv("JWT_SECRET")
