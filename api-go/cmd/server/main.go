@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"api-go/internal/handlers"
+	"api-go/internal/middleware"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -18,7 +19,7 @@ func main() {
 
 	handler := handlers.MatrixHandler{}
 
-	app.Post("/qr", handler.HandleQR)
+	app.Post("/qr", middleware.AuthRequired, handler.HandleQR)
 
 	port := os.Getenv("PORT")
 	if port == "" {

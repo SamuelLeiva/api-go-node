@@ -1,5 +1,11 @@
 import express from "express";
 import statsRoutes from "./routes/stats.routes";
+import dotenv from "dotenv";
+import path from "path";
+
+dotenv.config({
+  path: path.resolve(__dirname, "../.env"),
+})
 
 const app = express();
 app.use(express.json());
