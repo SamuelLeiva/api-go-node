@@ -17,15 +17,16 @@ export function calculateStatistics(matrices: number[][][]): Stats {
   }
 
   if (flat.length === 0) {
-    throw new Error("Empty matrices data");
+    throw new Error("Datos de matriz vacíos");
   }
 
+  // cálculo de máximo, minimo, suma y promedio
   const max = Math.max(...flat);
   const min = Math.min(...flat);
   const sum = flat.reduce((acc, v) => acc + v, 0);
   const average = sum / flat.length;
 
-  // 2. verificar si alguna es diagonal
+  // verificar si alguna es diagonal
   const isDiagonal = matrices.some(isMatrixDiagonal);
 
   return {
@@ -43,6 +44,7 @@ function isMatrixDiagonal(matrix: number[][]): boolean {
 
   if (rows !== cols) return false;
 
+  // por cada elemento fuera de la diagonal, verificar si es cero
   for (let i = 0; i < rows; i++) {
     for (let j = 0; j < cols; j++) {
       if (i !== j && matrix[i][j] !== 0) return false;
