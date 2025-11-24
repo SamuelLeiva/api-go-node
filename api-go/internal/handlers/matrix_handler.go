@@ -31,20 +31,51 @@ func (h *MatrixHandler) HandleQR(c *fiber.Ctx) error {
 
 	// Forward automático a API-Node si se configuró
 	nodeURL := os.Getenv("NODE_API_URL")
+
 	if nodeURL != "" {
 		body := map[string]any{
 			"matrices": []any{result.Q, result.R},
 		}
-		b, _ := json.Marshal(body)
 
-		resp, err := http.Post(nodeURL, "application/json", bytes.NewReader(b))
+		payloadBytes, _ := json.Marshal(body)
+
+		// obtener token del frontend
+		authHeader := c.Get("Authorization")
+
+		// construimos el request con header Authorization
+		req, _ := http.NewRequest("POST", nodeURL, bytes.NewReader(payloadBytes))
+		req.Header.Set("Content-Type", "application/json")
+		if authHeader != "" {
+			req.Header.Set("Authorization", authHeader)
+		}
+
+		resp, err := http.DefaultClient.Do(req)
 
 		if err != nil {
-			log.Println("Error forwarding to Node API:", err)
-		} else {
-			log.Println("Forwarded to Node API:", resp.Status)
+			log.Println("❌ Error forwarding to Node API:", err)
+			// Devolvemos QR normal, porque no es un error fatal
+			return c.JSON(result)
 		}
+
+		// Asegurarse de cerrar el body de la respuesta
+		defer resp.Body.Close()
+
+		// Parsear respuesta del API-Node
+		var stats map[string]any
+		if err := json.NewDecoder(resp.Body).Decode(&stats); err != nil {
+			log.Println("❌ Error parsing Node response:", err)
+			return c.JSON(result)
+		}
+
+		log.Println("📨 Forwarded to Node API:", resp.Status)
+
+		return c.JSON(map[string]any{
+			"Q":     result.Q,
+			"R":     result.R,
+			"stats": stats,
+		})
 	}
 
+	// Si no hay API-Node configurada, respondemos solo con el QR
 	return c.JSON(result)
 }

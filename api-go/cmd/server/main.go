@@ -5,10 +5,12 @@ import (
 	"os"
 	"time"
 
+	"api-go/internal/auth"
 	"api-go/internal/handlers"
 	"api-go/internal/middleware"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 )
 
 func main() {
@@ -17,9 +19,19 @@ func main() {
 		WriteTimeout: 10 * time.Second,
 	})
 
-	handler := handlers.MatrixHandler{}
+	app.Use(cors.New(cors.Config{
+		AllowOrigins: "http://localhost:5173", // dominio del frontend
+		AllowMethods: "GET,POST,OPTIONS",
+		AllowHeaders: "Origin, Content-Type, Accept, Authorization",
+	}))
 
-	app.Post("/qr", middleware.AuthRequired, handler.HandleQR)
+	// --- AUTH ---
+	authHandler := auth.AuthHandler{}
+
+	matrixHandler := handlers.MatrixHandler{}
+
+	app.Post("/login", authHandler.Login)
+	app.Post("/qr", middleware.AuthRequired, matrixHandler.HandleQR)
 
 	port := os.Getenv("PORT")
 	if port == "" {

@@ -1,0 +1,1 @@
+export const API_GO_URL = import.meta.env.VITE_API_GO_URL as string;
