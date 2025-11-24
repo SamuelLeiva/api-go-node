@@ -186,7 +186,3 @@ Response
 - El frontend siempre envía el JWT automáticamente
 
 - La API Go reenvía Q y R a Node
-
-- Arquitectura desacoplada y profesional
-
-- Ideal para entrevistas semi-senior / senior
