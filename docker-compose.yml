@@ -23,7 +23,7 @@ services:
     build:
       context: ./frontend
       args:
-        VITE_API_GO_URL: "http://localhost:8080"
+        VITE_API_GO_URL: "http://44.200.73.216:8080"
     container_name: frontend
     ports:
       - "5173:80" 
