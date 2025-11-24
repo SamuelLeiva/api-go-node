@@ -45,6 +45,7 @@ Desde la raíz:
 ## Frontend (React)
 
 ```bash
+ http://localhost:5173/
  http://44.200.73.216:5173/
 ```
 
@@ -53,6 +54,7 @@ Desde la raíz:
 ### Login (POST)
 
 ```bash
+ http://localhost:8080/login
  http://44.200.73.216:8080/login
 ```
 
@@ -76,6 +78,7 @@ Response
 ### ProcessQR (POST)
 
 ```bash
+ http://localhost:8080/qr
  http://44.200.73.216:8080/qr
 ```
 
@@ -135,6 +138,7 @@ Response
 ### Process Stats (POST)
 
 ```bash
+ http://localhost:3000/stats
  http://44.200.73.216:3000/stats
 ```
 
