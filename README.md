@@ -190,3 +190,5 @@ Response
 - El frontend siempre envía el JWT automáticamente
 
 - La API Go reenvía Q y R a Node
+
+- La aplicación se encuentra desplegada en EC2 (IPv4: 44.200.73.216)
