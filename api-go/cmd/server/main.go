@@ -20,7 +20,7 @@ func main() {
 	})
 
 	app.Use(cors.New(cors.Config{
-		AllowOrigins: "http://localhost:5173", // dominio del frontend
+		AllowOrigins: "*", // dominio del frontend
 		AllowMethods: "GET,POST,OPTIONS",
 		AllowHeaders: "Origin, Content-Type, Accept, Authorization",
 	}))
