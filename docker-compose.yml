@@ -7,7 +7,7 @@ services:
     environment:
       # API-Go enviará Q y R aquí
       NODE_API_URL: "http://api-node:3000/stats"
-      JWT_SECRET: "superSecretKey518485151H8t+ds*&^%$#@!"
+      JWT_SECRET: "superSecretKey_518485151_H8t_ds_ABCD1234"
     depends_on:
       - api-node
 
