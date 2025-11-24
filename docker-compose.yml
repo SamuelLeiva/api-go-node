@@ -17,7 +17,7 @@ services:
     ports:
       - "3000:3000"
     environment:
-      JWT_SECRET: "superSecretKey518485151H8t+ds*&^%$#@!"
+      JWT_SECRET: "superSecretKey_518485151_H8t_ds_ABCD1234"
 
   frontend:
     build:
